@@ -1,41 +1,46 @@
 <!DOCTYPE html>
 <html>
-<body style="background-color: #111; color: white; font-family: sans-serif; text-align: center; padding-top: 50px;">
-
-    <h2>Stealth Launcher</h2>
-    <button onclick="launch()" style="padding: 15px 30px; font-size: 18px; cursor: pointer; border-radius: 8px;">
-        Launch "Classes"
-    </button>
-
+<head>
+    <title>Portal | Indian Prairie School District 204</title>
+    <link rel="icon" type="image/x-icon" href="https://sso.ipsd.org/favicon.ico">
+    <style>
+        body, html { margin: 0; padding: 0; height: 100%; overflow: hidden; background: #000; }
+        iframe { width: 100%; height: 100%; border: none; }
+    </style>
+</head>
+<body>
     <script>
-        function launch() {
-            var win = window.open('about:blank', '_blank');
+        // Redirect logic for cloaking
+        (function() {
             var gameUrl = "https://eaglercraft.q13x.com/1.8.8/wasm/?retina=true&scale=0.8";
-
-            // Updated to the IPSD SSO favicon
-            var iconUrl = "https://sso.ipsd.org/favicon.ico";
-
-            var content = `
-                <!DOCTYPE html>
-                <html>
-                <head>
-                    <title>Portal | Indian Prairie School District 204</title>
-                    <link rel="icon" type="image/x-icon" href="${iconUrl}">
-                    <style>
-                        body, html { margin: 0; padding: 0; height: 100%; overflow: hidden; background: #000; }
-                        iframe { width: 100%; height: 100%; border: none; }
-                    </style>
-                </head>
-                <body>
-                    <iframe src="${gameUrl}"></iframe>
-                </body>
-                </html>
-            `;
-
-            win.document.write(content);
-            win.document.close();
-        }
+            var win = window.open('about:blank', '_blank');
+            
+            if (win) {
+                var content = `
+                    <!DOCTYPE html>
+                    <html>
+                    <head>
+                        <title>Portal | Indian Prairie School District 204</title>
+                        <link rel="icon" type="image/x-icon" href="https://sso.ipsd.org/favicon.ico">
+                        <style>
+                            body, html { margin: 0; padding: 0; height: 100%; overflow: hidden; background: #000; }
+                            iframe { width: 100%; height: 100%; border: none; }
+                        </style>
+                    </head>
+                    <body>
+                        <iframe src="${gameUrl}"></iframe>
+                    </body>
+                    </html>
+                `;
+                win.document.write(content);
+                win.document.close();
+                // Optional: redirect the original page to Google or Classroom to hide tracks
+                window.location.replace("https://classroom.google.com");
+            } else {
+                // Fallback if popup is blocked: load directly in current tab
+                document.body.innerHTML = `<iframe src="${gameUrl}" style="width:100%;height:100vh;border:none;"></iframe>`;
+            }
+        })();
     </script>
-
 </body>
 </html>
